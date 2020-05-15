@@ -15,5 +15,13 @@
     <string name="signup">Sign Up</string>
     <string name="is_barber">Are you a barber ?</string>
     <string name="terms_and_conditions">By signing up, I agree with the Terms of Service  and Privacy Policy</string>
+    <string name="forgot_password">Forgot password ?</string>
+    <string name="incorrect_credentials">Email or username are incorrect</string>
+    <!-- validation messages -->
+    <string name="name_error">Enter a valid name</string>
+    <string name="email_error">Enter a valid email</string>
+    <string name="phone_error">Enter a valid phone number</string>
+    <string name="password_error">Enter a valid password</string>
+    <string name="confirm_password_error">Passwords must be the same</string>
 
 </resources>

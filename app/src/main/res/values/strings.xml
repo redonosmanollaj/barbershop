@@ -30,7 +30,8 @@
     <string name="info_tab">INFO</string>
     <string name="reviews_tab">REVIEWS</string>
     <string name="services_tab">SERVICES</string>
-    <string name="location_hours">LOCATION &amp; HOURS</string>
+    <string name="location">LOCATION</string>
+    <string name="hours">HOURS</string>
     <string name="edit">EDIT</string>
     <string name="address">Address</string>
     <string name="photos">PHOTOS</string>

@@ -14,16 +14,17 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".barber.ui.BarberActivity"
-            android:theme="@style/BarberActivityTheme">
+            android:theme="@style/BarberActivityTheme"
+            android:launchMode="singleTop">
+        </activity>
+        <activity
+            android:name=".auth.ui.AuthActivity"
+            android:theme="@style/AuthTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".auth.ui.AuthActivity"
-            android:theme="@style/AuthTheme">
 
         </activity>
         <activity

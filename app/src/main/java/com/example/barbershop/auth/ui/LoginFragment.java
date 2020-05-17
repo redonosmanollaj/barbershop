@@ -30,7 +30,7 @@ public class LoginFragment extends Fragment {
 
 
     public interface OnLoginListener{
-        void onLogin(String token);
+        void onLogin(String token, User user);
     }
 
     private OnLoginListener loginListener;
@@ -109,7 +109,7 @@ public class LoginFragment extends Fragment {
             if(token != null){
                 user = httpClient.getUser(token);
                 if(loginListener != null)
-                    loginListener.onLogin(token);
+                    loginListener.onLogin(token,user);
             }
             return user;
         }

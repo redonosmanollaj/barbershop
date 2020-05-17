@@ -46,6 +46,10 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         final View root = inflater.inflate(R.layout.fragment_barber_profile,container,false);
 
+        String userName = getArguments().getString("name");
+        tvFullname = root.findViewById(R.id.tv_fullname);
+        tvFullname.setText(userName);
+
         profileTabLayout = root.findViewById(R.id.tablayout_profile);
 
         profileViewPager = root.findViewById(R.id.profile_viewpager);

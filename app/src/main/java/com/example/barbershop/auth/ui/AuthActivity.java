@@ -13,6 +13,8 @@ import android.os.Bundle;
 import com.example.barbershop.MainActivity;
 import com.example.barbershop.R;
 import com.example.barbershop.auth.data.AuthPreference;
+import com.example.barbershop.barber.ui.BarberActivity;
+import com.example.barbershop.models.User;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
@@ -23,6 +25,7 @@ public class AuthActivity extends AppCompatActivity implements LoginFragment.OnL
     TabLayout authTabLayout;
     ViewPager authViewPager;
     private AuthPreference authPreference;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,15 +55,17 @@ public class AuthActivity extends AppCompatActivity implements LoginFragment.OnL
     }
 
     @Override
-    public void onLogin(String token) {
+    public void onLogin(String token, User user) {
         authPreference.setLoggedIn(true);
         authPreference.setToken(token);
+        this.user = user;
         startBarberActivity();
         finish();
     }
 
     private void startBarberActivity(){
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, BarberActivity.class);
+        intent.putExtra("name",user.getName());
         startActivity(intent);
     }
 

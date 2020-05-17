@@ -75,7 +75,7 @@ public class AuthActivity extends AppCompatActivity implements LoginFragment.OnL
         List<String> fragmentTitleList = new ArrayList<>();
 
         public TabAdapter(FragmentManager fm) {
-            super(fm);
+            super(fm,BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         }
 
         @Override

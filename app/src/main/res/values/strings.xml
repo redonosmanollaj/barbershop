@@ -24,4 +24,19 @@
     <string name="password_error">Enter a valid password</string>
     <string name="confirm_password_error">Passwords must be the same</string>
 
+
+
+    <!-- Barber Activity Strings -->
+    <string name="info_tab">INFO</string>
+    <string name="reviews_tab">REVIEWS</string>
+    <string name="services_tab">SERVICES</string>
+    <string name="location_hours">LOCATION &amp; HOURS</string>
+    <string name="edit">EDIT</string>
+    <string name="address">Address</string>
+    <string name="photos">PHOTOS</string>
+    <string name="add_photo">ADD PHOTO</string>
+    <string name="reviews">REVIEWS</string>
+    <string name="services">SERVICES</string>
+    <string name="add">ADD</string>
+
 </resources>

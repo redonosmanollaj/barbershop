@@ -54,9 +54,9 @@ public class LoginFragment extends Fragment {
 
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                performLogin();
+                    @Override
+                    public void onClick(View v) {
+                        performLogin();
             }
         });
 

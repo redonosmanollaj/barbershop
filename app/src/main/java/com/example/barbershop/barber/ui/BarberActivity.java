@@ -36,7 +36,7 @@ public class BarberActivity extends AppCompatActivity {
         Bundle bundle = new Bundle();
         bundle.putString("name",userName);
         profileFragment.setArguments(bundle);
-        
+
         setContentView(R.layout.activity_barber);
 
         fm.beginTransaction().add(R.id.nav_host_fragment,appointmentsFragment).hide(appointmentsFragment).commit();

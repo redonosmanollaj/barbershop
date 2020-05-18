@@ -47,7 +47,8 @@ public class LocationHttpClient extends BaseHttpClient{
                 .build();
 
         try{
-            Response response = httpClient.newCall(request).execute();
+            Response response = httpClient
+                    .newCall(request).execute();
             ResponseBody responseBody = response.body();
             if(responseBody != null){
                 String json = responseBody.string();

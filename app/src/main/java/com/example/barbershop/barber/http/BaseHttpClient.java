@@ -19,6 +19,4 @@ public class BaseHttpClient {
         this.httpClient = new OkHttpClient();
     }
 
-
-
 }

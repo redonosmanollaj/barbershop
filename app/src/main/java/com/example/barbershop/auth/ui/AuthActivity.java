@@ -10,10 +10,10 @@ import androidx.viewpager.widget.ViewPager;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.barbershop.MainActivity;
 import com.example.barbershop.R;
 import com.example.barbershop.auth.data.AuthPreference;
 import com.example.barbershop.barber.ui.BarberActivity;
+import com.example.barbershop.client.ui.ClientActivity;
 import com.example.barbershop.models.User;
 import com.google.android.material.tabs.TabLayout;
 
@@ -70,7 +70,8 @@ public class AuthActivity extends AppCompatActivity implements LoginFragment.OnL
     }
 
     private void startClientActivity(){
-
+        Intent intent = new Intent(this, ClientActivity.class);
+        intent.putExtra("name", user.getName());
     }
 
 

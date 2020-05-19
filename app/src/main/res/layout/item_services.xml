@@ -19,7 +19,7 @@
             android:text="Haircut" />
 
         <TextView
-            android:id="@+id/tv_service_time"
+            android:id="@+id/tv_service_duration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="40 minutes" />

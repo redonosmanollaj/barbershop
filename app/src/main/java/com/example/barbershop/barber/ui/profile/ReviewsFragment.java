@@ -1,20 +1,39 @@
 package com.example.barbershop.barber.ui.profile;
 
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.example.barbershop.R;
+import com.example.barbershop.barber.adapters.ReviewsAdapter;
+import com.example.barbershop.barber.viewmodels.ReviewsViewModel;
+import com.example.barbershop.models.Review;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class ReviewsFragment extends Fragment {
+
+    ReviewsViewModel viewModel;
+    ReviewsAdapter reviewsAdapter;
+    RecyclerView recyclerView;
+    List<Review> reviewList = new ArrayList<>();
 
 
     public ReviewsFragment() {
@@ -25,8 +44,39 @@ public class ReviewsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_barber_profile_reviews, container, false);
+        final View root = inflater.inflate(R.layout.fragment_barber_profile_reviews, container, false);
+
+        recyclerView = root.findViewById(R.id.reviews_recyclerview);
+        reviewsAdapter = new ReviewsAdapter(reviewList);
+
+        viewModel = ViewModelProviders.of(this).get(ReviewsViewModel.class);
+        viewModel.getData().observe(this, new Observer<List<Review>>() {
+            @Override
+            public void onChanged(List<Review> reviews) {
+                if(reviews != null){
+                    setReviews(reviews);
+                }
+            }
+        });
+
+        return root;
     }
 
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        Context context = view.getContext();
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        recyclerView.setAdapter(reviewsAdapter);
+    }
+
+    private void setReviews(List<Review> reviews){
+        reviewsAdapter.notifyDataSetChanged();
+        for(Review review : reviews){
+            reviewList.add(review);
+            reviewsAdapter.notifyItemInserted(reviews.indexOf(review));
+        }
+    }
 }

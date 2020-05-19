@@ -50,6 +50,8 @@
             style="@style/Widget.AppCompat.RatingBar.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:progressTint="@color/colorAccent"
+            android:progressBackgroundTint="@android:color/darker_gray"
             android:numStars="5"
             android:layout_marginRight="15dp"/>
 

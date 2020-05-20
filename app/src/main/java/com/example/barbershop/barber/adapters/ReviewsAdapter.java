@@ -37,7 +37,7 @@ public class ReviewsAdapter extends RecyclerView.Adapter<ReviewsAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.tvClientName.setText(reviews.get(position).getClientName());
-        holder.tvElapsedTime.setText(reviews.get(position).getCreatedAt());
+        holder.tvElapsedTime.setText(reviews.get(position).getElapsedTime());
         holder.tvComment.setText(reviews.get(position).getContent());
         holder.ratingBar.setProgress(reviews.get(position).getStars());
         // AVATAR

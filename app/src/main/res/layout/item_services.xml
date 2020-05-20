@@ -3,6 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
+    android:background="@android:color/black"
+    android:layout_marginTop="3dp"
     android:padding="15dp">
 
     <LinearLayout
@@ -15,6 +17,7 @@
             android:id="@+id/tv_service_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
             style="@style/TextAppearance.MaterialComponents.Headline6"
             android:text="Haircut" />
 
@@ -28,6 +31,7 @@
             android:id="@+id/tv_service_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
             style="@style/TextAppearance.MaterialComponents.Body1"
             android:text="Description" />
 
@@ -38,6 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="20$"
+        android:textColor="@android:color/white"
         style="@style/TextAppearance.MaterialComponents.Headline6"
         android:layout_gravity="center"/>
 

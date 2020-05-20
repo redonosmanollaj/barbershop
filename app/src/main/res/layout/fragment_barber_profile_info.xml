@@ -44,7 +44,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingLeft="10dp">
+            android:paddingLeft="10dp"
+            android:background="@android:color/black">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -116,23 +117,18 @@
                     android:textStyle="bold" />
             </LinearLayout>
 
-            <!-- DELETE THESE -->
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/linear_layout_hours"
                 android:orientation="vertical"
+                android:background="@android:color/black"
                 android:paddingLeft="10dp">
 
 
             </LinearLayout>
-            <!-- ________________ -->
 
-            <!--        <ListView-->
-            <!--            android:layout_width="match_parent"-->
-            <!--            android:layout_height="wrap_content"-->
-            <!--            tools:listitem="@layout/item_hours"-->
-            <!--            android:layout_marginTop="10sp"/>-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -164,7 +160,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="@android:color/black">
 
             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"

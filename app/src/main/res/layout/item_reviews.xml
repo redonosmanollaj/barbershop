@@ -5,6 +5,8 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="10dp"
+    android:background="@android:color/black"
+    android:layout_marginTop="3dp"
     >
 
 
@@ -34,12 +36,14 @@
                 android:layout_height="wrap_content"
                 style="@style/TextAppearance.MaterialComponents.Headline6"
                 android:text="Filan Fisteku"
+                android:textColor="@android:color/white"
                 android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/tv_review_elapsed_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
                 style="@style/TextAppearance.MaterialComponents.Body1"
                 android:text="2 weeks ago" />
 
@@ -62,6 +66,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Very good barber !"
+        android:textColor="@android:color/white"
         android:layout_marginTop="10dp"/>
 
 

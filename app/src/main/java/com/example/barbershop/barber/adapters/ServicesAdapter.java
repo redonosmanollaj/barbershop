@@ -32,9 +32,9 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.tvServiceName.setText(services.get(position).getName());
-        holder.tvServiceDuration.setText(String.valueOf(services.get(position).getDuration()));
+        holder.tvServiceDuration.setText(services.get(position).getDurationMinutes());
         holder.tvServiceDescription.setText(services.get(position).getDescription());
-        holder.tvServicePrice.setText(services.get(position).getPrice());
+        holder.tvServicePrice.setText(services.get(position).getPriceCurrency());
     }
 
     @Override

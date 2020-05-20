@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.barbershop.R;
 import com.example.barbershop.barber.adapters.ServicesAdapter;
@@ -33,6 +34,7 @@ public class ServicesFragment extends Fragment {
     ServicesAdapter servicesAdapter;
     RecyclerView recyclerView;
     List<Service> serviceList = new ArrayList<>();
+    TextView tvAddService;
 
 
     public ServicesFragment() {
@@ -46,6 +48,8 @@ public class ServicesFragment extends Fragment {
         // Inflate the layout for this fragment
         final View root = inflater.inflate(R.layout.fragment_barber_profile_services, container, false);
 
+        tvAddService = root.findViewById(R.id.tv_add_service);
+
         recyclerView = root.findViewById(R.id.services_recyclerview);
         servicesAdapter = new ServicesAdapter(serviceList);
 
@@ -57,6 +61,12 @@ public class ServicesFragment extends Fragment {
             }
         });
 
+        tvAddService.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startFragment(new AddServiceFragment());
+            }
+        });
 
         return root;
     }
@@ -76,6 +86,13 @@ public class ServicesFragment extends Fragment {
             serviceList.add(service);
             servicesAdapter.notifyItemInserted(services.indexOf(service));
         }
+    }
+
+    private void startFragment(Fragment fragment){
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.nav_host_fragment,fragment)
+                .addToBackStack(null)
+                .commit();
     }
 
 }

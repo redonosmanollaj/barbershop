@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +28,7 @@ public class LoginFragment extends Fragment {
     public EditText etEmail, etPassword;
     public TextView tvError;
     public Button btnLogin;
+    public ProgressBar loadingProgressBar;
 
 
     public interface OnLoginListener{
@@ -51,12 +53,13 @@ public class LoginFragment extends Fragment {
         etPassword = root.findViewById(R.id.etPassword);
         tvError = root.findViewById(R.id.tvError);
         btnLogin = root.findViewById(R.id.btnLogin);
+        loadingProgressBar = root.findViewById(R.id.loading_progressbar);
 
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        performLogin();
+                        new LoginAsyncTask().execute();
             }
         });
 
@@ -85,9 +88,26 @@ public class LoginFragment extends Fragment {
         loginListener = null;
     }
 
-    private void performLogin(){
-        new LoginAsyncTask().execute();
+    private void disableForm(){
+        etEmail.setEnabled(false);
+        etEmail.setAlpha((float) 0.4);
+        etPassword.setEnabled(false);
+        etPassword.setAlpha((float)0.4);
+        btnLogin.setEnabled(false);
+        btnLogin.setAlpha((float)0.4);
+        loadingProgressBar.setVisibility(View.VISIBLE);
     }
+
+    private void enableForm(){
+        etEmail.setEnabled(true);
+        etEmail.setAlpha(1);
+        etPassword.setEnabled(true);
+        etPassword.setAlpha(1);
+        btnLogin.setEnabled(true);
+        btnLogin.setAlpha(1);
+        loadingProgressBar.setVisibility(View.INVISIBLE);
+    }
+
 
     class LoginAsyncTask extends AsyncTask<Void,Void,User>{
         private String email, password;
@@ -96,6 +116,7 @@ public class LoginFragment extends Fragment {
         protected void onPreExecute() {
             this.email = etEmail.getText().toString();
             this.password = etPassword.getText().toString();
+            disableForm();
         }
 
         @Override
@@ -121,6 +142,7 @@ public class LoginFragment extends Fragment {
                 Toast.makeText(getContext(),"Welcome, "+user.getName(),Toast.LENGTH_LONG).show();
             } else {
                 tvError.setText(R.string.incorrect_credentials);
+                enableForm();
             }
 
         }

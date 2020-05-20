@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProviders;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -32,6 +33,7 @@ public class InfoFragment extends Fragment {
     private TextView tvBarbershop, tvStreet, tvBuilding, tvCity, tvCountry;
     private InfoViewModel viewModel;
     private LinearLayout hoursLayout;
+    private TextView tvEditLocation, tvEditHours, tvAddPhoto;
 
 
     public InfoFragment() {
@@ -49,6 +51,7 @@ public class InfoFragment extends Fragment {
         tvBuilding = root.findViewById(R.id.tv_building);
         tvCity = root.findViewById(R.id.tv_city);
         tvCountry = root.findViewById(R.id.tv_country);
+        tvEditLocation = root.findViewById(R.id.tv_edit_location);
 
         hoursLayout = (LinearLayout)root.findViewById(R.id.linear_layout_hours);
 
@@ -57,6 +60,13 @@ public class InfoFragment extends Fragment {
             @Override
             public void onChanged(Info info) {
                 setInfo(info);
+            }
+        });
+
+        tvEditLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startFragment(new EditLocationFragment());
             }
         });
 
@@ -93,36 +103,11 @@ public class InfoFragment extends Fragment {
         setHours(info.getHours());
     }
 
-    class LocationAsyncTask extends AsyncTask<Void,Void, Location>{
-
-        @Override
-        protected Location doInBackground(Void... voids) {
-
-            LocationHttpClient httpClient = new LocationHttpClient(getContext());
-            Location location = httpClient.getLocation();
-
-            return location;
-        }
-
-        @Override
-        protected void onPostExecute(Location location) {
-            setLocation(location);
-        }
-    }
-
-    class HoursAsyncTask extends AsyncTask<Void,Void,List<Hours>>{
-
-        @Override
-        protected List<Hours> doInBackground(Void... voids) {
-            HoursHttpClient httpClient = new HoursHttpClient(getContext());
-            List<Hours> hours = httpClient.getHours();
-            return hours;
-        }
-
-        @Override
-        protected void onPostExecute(List<Hours> hours) {
-            setHours(hours);
-        }
+    private void startFragment(Fragment fragment){
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.nav_host_fragment,fragment)
+                .addToBackStack(null)
+                .commit();
     }
 
 }

@@ -1,5 +1,12 @@
 package com.example.barbershop.models;
 
+import org.ocpsoft.prettytime.PrettyTime;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Review {
     private int id;
     private String clientName;
@@ -38,6 +45,16 @@ public class Review {
     }
 
     public String getElapsedTime(){
-        return "";
+        String elapsedTime = "";
+        try {
+            DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+            DateFormat outputFormat = new SimpleDateFormat("EEEE, dd/MM/yyyy/hh:mm:ss");
+            Date date = inputFormat.parse(this.createdAt);
+            PrettyTime prettyTime = new PrettyTime();
+            elapsedTime = prettyTime.format(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return elapsedTime;
     }
 }

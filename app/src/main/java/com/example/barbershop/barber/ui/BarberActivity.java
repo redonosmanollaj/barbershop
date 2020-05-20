@@ -17,6 +17,11 @@ public class BarberActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigation;
     private String userName;
     Fragment active;
+    Fragment profileFragment = new ProfileFragment();
+    Fragment appointmentsFragment;
+    Fragment clientsFragment;
+    Fragment notificationsFragment;
+    Fragment settingsFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,13 +30,13 @@ public class BarberActivity extends AppCompatActivity {
         Intent intent = getIntent();
         userName = intent.getStringExtra("name");
 
-        final Fragment profileFragment = new ProfileFragment();
-        final Fragment appointmentsFragment = new AppointmentsFragment();
-        final Fragment clientsFragment = new ClientsFragment();
-        final Fragment notificationsFragment = new NotificationsFragment();
-        final Fragment settingsFragment = new SettingsFragment();
-        final FragmentManager fm = getSupportFragmentManager();
         active = profileFragment;
+        final FragmentManager fm = getSupportFragmentManager();
+
+        if (savedInstanceState == null) {
+            fm.beginTransaction().replace(R.id.nav_host_fragment,
+                    profileFragment).commit();
+        }
 
         Bundle bundle = new Bundle();
         bundle.putString("name",userName);
@@ -39,39 +44,36 @@ public class BarberActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_barber);
 
-        fm.beginTransaction().add(R.id.nav_host_fragment,appointmentsFragment).hide(appointmentsFragment).commit();
-        fm.beginTransaction().add(R.id.nav_host_fragment,clientsFragment).hide(clientsFragment).commit();
-        fm.beginTransaction().add(R.id.nav_host_fragment,notificationsFragment).hide(notificationsFragment).commit();
-        fm.beginTransaction().add(R.id.nav_host_fragment,settingsFragment).hide(settingsFragment).commit();
-        fm.beginTransaction().add(R.id.nav_host_fragment,profileFragment).commit();
-
         bottomNavigation = findViewById(R.id.bottom_navigation);
         bottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()){
                     case R.id.nav_profile:
-                        fm.beginTransaction().hide(active).show(profileFragment).commit();
+                        if(profileFragment == null) profileFragment = new ProfileFragment();
                         active = profileFragment;
-                        return true;
+                        break;
                     case R.id.nav_appointments:
-                        fm.beginTransaction().hide(active).show(appointmentsFragment).commit();
+                        if(appointmentsFragment == null) appointmentsFragment = new AppointmentsFragment();
                         active = appointmentsFragment;
-                        return true;
+                        break;
                     case R.id.nav_clients:
-                        fm.beginTransaction().hide(active).show(clientsFragment).commit();
+                        if(clientsFragment == null) clientsFragment = new ClientsFragment();
                         active = clientsFragment;
-                        return true;
+                        break;
                     case R.id.nav_notifications:
-                        fm.beginTransaction().hide(active).show(notificationsFragment).commit();
+                        if(notificationsFragment == null) notificationsFragment = new NotificationsFragment();
                         active = notificationsFragment;
-                        return true;
+                        break;
                     case R.id.nav_settings:
-                        fm.beginTransaction().hide(active).show(settingsFragment).commit();
+                        if(settingsFragment == null) settingsFragment = new SettingsFragment();
                         active = settingsFragment;
-                        return true;
+                        break;
+                    default:
+                        return  false;
                 }
-                return false;
+                fm.beginTransaction().replace(R.id.nav_host_fragment,active).commit();
+                return true;
             }
         });
 

@@ -33,10 +33,17 @@ public class Service {
         return duration;
     }
 
+    public String getDurationMinutes() {
+        return this.duration+" minutes";
+    }
+
+    public String getPriceCurrency(){
+        return this.price + " $";
+    }
+
     public String getDescription() {
-        if(description == null)
+        if(description == "null")
             description = " ";
         return description;
-        // TODO: DESCRIPTION NULL IN LAYOUT
     }
 }

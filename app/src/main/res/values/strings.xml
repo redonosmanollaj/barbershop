@@ -25,7 +25,6 @@
     <string name="confirm_password_error">Passwords must be the same</string>
 
 
-
     <!-- Barber Activity Strings -->
     <string name="info_tab">INFO</string>
     <string name="reviews_tab">REVIEWS</string>
@@ -39,5 +38,12 @@
     <string name="reviews">REVIEWS</string>
     <string name="services">SERVICES</string>
     <string name="add">ADD</string>
+
+    <!-- Location strings -->
+    <string name="barbershop_name">BARBERSHOP NAME</string>
+    <string name="street">STREET</string>
+    <string name="building">BUILDING, FLOOR, SUITE, ETC.</string>
+    <string name="city">CITY</string>
+    <string name="country">COUNTRY</string>
 
 </resources>

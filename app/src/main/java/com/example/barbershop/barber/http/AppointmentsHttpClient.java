@@ -14,7 +14,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import okhttp3.FormBody;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 
@@ -25,6 +27,7 @@ public class AppointmentsHttpClient extends BaseHttpClient{
     private int day;
 
     public static final String APPOINTMENTS_PATH = "/api/barber/appointments";
+    public static final String APPOINTMENTS_BY_DATE_PATH = "/api/barber/appointments/date";
 
     public AppointmentsHttpClient(Context c) {
         super(c);
@@ -62,6 +65,64 @@ public class AppointmentsHttpClient extends BaseHttpClient{
                             jsonServices.getJSONObject(j).getString("price"),
                             jsonServices.getJSONObject(j).getInt("duration"),
                             jsonServices.getJSONObject(j).getString("description")
+                        );
+                        services.add(service);
+                    }
+
+                    JSONObject client = jsonObject.getJSONObject("client");
+                    JSONObject barber = jsonObject.getJSONObject("barber");
+
+                    Appointment appointment = new Appointment(
+                            jsonObject.getInt("id"),
+                            client.getString("name"),
+                            barber.getString("name"),
+                            services,
+                            jsonObject.getString("date_time"),
+                            jsonObject.getString("status")
+                    );
+                    appointments.add(appointment);
+                }
+            }
+        } catch (IOException | JSONException e) {
+            e.printStackTrace();
+        }
+
+        return appointments;
+    }
+
+
+    public List<Appointment> getAppointments(int year, int month, int day){
+        List<Appointment> appointments = new ArrayList<>();
+
+        RequestBody requestBody = new FormBody.Builder()
+                .add("year", String.valueOf(year))
+                .add("month", String.valueOf(month))
+                .add("day", String.valueOf(day))
+                .build();
+
+        Request request = new Request.Builder()
+                .url(BASE_URL+APPOINTMENTS_BY_DATE_PATH)
+                .addHeader("Authorization","Bearer "+token)
+                .post(requestBody)
+                .build();
+
+        try{
+            Response response = httpClient.newCall(request).execute();
+            ResponseBody responseBody = response.body();
+            if(responseBody != null){
+                String json = responseBody.string();
+                JSONArray jsonArray = new JSONArray(json);
+                for(int i=0; i<jsonArray.length(); i++){
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                    JSONArray jsonServices = jsonObject.getJSONArray("services");
+                    List<Service> services = new ArrayList<>();
+                    for(int j=0;j<jsonServices.length();j++){
+                        Service service = new Service(
+                                jsonServices.getJSONObject(j).getInt("id"),
+                                jsonServices.getJSONObject(j).getString("name"),
+                                jsonServices.getJSONObject(j).getString("price"),
+                                jsonServices.getJSONObject(j).getInt("duration"),
+                                jsonServices.getJSONObject(j).getString("description")
                         );
                         services.add(service);
                     }

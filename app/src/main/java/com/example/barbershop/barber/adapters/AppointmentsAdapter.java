@@ -35,7 +35,7 @@ public class AppointmentsAdapter extends RecyclerView.Adapter<AppointmentsAdapte
         // AVATAR
         holder.tvClientName.setText(appointments.get(position).getClientName());
         holder.tvServices.setText(appointments.get(position).getServices());
-        holder.tvTime.setText(appointments.get(position).getTime());
+        holder.tvTime.setText(appointments.get(position).getFormatedTime());
         holder.tvStatus.setText(appointments.get(position).getStatus().toUpperCase());
 
         switch (appointments.get(position).getStatus().toString()){

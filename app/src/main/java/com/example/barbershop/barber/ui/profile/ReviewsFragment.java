@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.barbershop.R;
 import com.example.barbershop.barber.adapters.ReviewsAdapter;
@@ -34,6 +35,7 @@ public class ReviewsFragment extends Fragment {
     ReviewsAdapter reviewsAdapter;
     RecyclerView recyclerView;
     List<Review> reviewList = new ArrayList<>();
+    TextView tvNoReviews;
 
 
     public ReviewsFragment() {
@@ -45,6 +47,8 @@ public class ReviewsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View root = inflater.inflate(R.layout.fragment_barber_profile_reviews, container, false);
+
+        tvNoReviews = root.findViewById(R.id.tv_no_reviews);
 
         recyclerView = root.findViewById(R.id.reviews_recyclerview);
         reviewsAdapter = new ReviewsAdapter(reviewList);
@@ -74,9 +78,15 @@ public class ReviewsFragment extends Fragment {
 
     private void setReviews(List<Review> reviews){
         reviewsAdapter.notifyDataSetChanged();
-        for(Review review : reviews){
-            reviewList.add(review);
-            reviewsAdapter.notifyItemInserted(reviewList.indexOf(review));
+        if(reviews.size() > 0){
+            tvNoReviews.setVisibility(View.INVISIBLE);
+            for(Review review : reviews){
+                reviewList.add(review);
+                reviewsAdapter.notifyItemInserted(reviewList.indexOf(review));
+            }
+        } else {
+            tvNoReviews.setVisibility(View.VISIBLE);
         }
+
     }
 }

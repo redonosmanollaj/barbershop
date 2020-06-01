@@ -25,4 +25,15 @@
         tools:listitem="@layout/item_reviews"
         />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_no_reviews"
+        android:text="No reviews yet"
+        android:textSize="20sp"
+        android:textColor="@android:color/white"
+        android:textAlignment="center"
+        android:padding="15dp"
+        android:visibility="invisible"/>
+
 </LinearLayout>

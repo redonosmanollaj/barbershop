@@ -53,15 +53,9 @@ public class Appointment {
     }
 
     public String getFormatedTime(){
-        Date date = null;
-        Date formatedDate = null;
-        try {
-            DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-            date = inputFormat.parse(this.time);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return date.toString();
+        String[] tokens = this.time.split(" ");
+        String formatedTime = tokens[1].substring(0,5);
+        return formatedTime;
     }
 
     public String getStatus() {

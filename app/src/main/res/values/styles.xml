@@ -42,4 +42,18 @@
         <item name="android:textColor">@android:color/white</item>
     </style>
 
+    <style name="CalendarAppearance" parent="@style/TextAppearance.AppCompat.Medium">
+        <item name="colorPrimary">@android:color/white</item>
+        <item name="colorPrimaryDark">@android:color/black</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="CalendarStyle" parent="BarberActivityTheme">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:background">@android:color/black</item>
+        <item name="mcv_dateTextAppearance">@android:color/white</item>
+        <item name="mcv_headerTextAppearance">@android:color/white</item>
+        <item name="mcv_weekDayTextAppearance">@android:color/white</item>
+    </style>
+
 </resources>

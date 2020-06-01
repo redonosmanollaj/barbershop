@@ -84,7 +84,7 @@ public class ServicesFragment extends Fragment {
         servicesAdapter.notifyDataSetChanged();
         for(Service service : services){
             serviceList.add(service);
-            servicesAdapter.notifyItemInserted(services.indexOf(service));
+            servicesAdapter.notifyItemInserted(serviceList.indexOf(service));
         }
     }
 

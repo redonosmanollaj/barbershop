@@ -46,4 +46,17 @@
     <string name="city">CITY</string>
     <string name="country">COUNTRY</string>
 
+
+    <!-- Notifications strings -->
+    <string name="notifications">NOTIFICATIONS</string>
+
+
+    <!-- Appointments strings -->
+    <string name="appointments">APPOINTMENTS</string>
+    <string name="requested">Requested</string>
+    <string name="cancelled">Cancelled</string>
+    <string name="confirmed">Confirmed</string>
+    <string name="completed">Completed</string>
+    <string name="no_show">No show</string>
+
 </resources>

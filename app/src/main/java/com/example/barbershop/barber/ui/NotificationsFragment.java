@@ -25,8 +25,13 @@ public class NotificationsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_barber_notifications, container, false);
+        final View root = inflater.inflate(R.layout.fragment_barber_notifications, container, false);
+
+
+
+
+
+        return root;
     }
 
 }

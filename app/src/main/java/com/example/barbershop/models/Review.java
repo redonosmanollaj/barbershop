@@ -48,7 +48,6 @@ public class Review {
         String elapsedTime = "";
         try {
             DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-            DateFormat outputFormat = new SimpleDateFormat("EEEE, dd/MM/yyyy/hh:mm:ss");
             Date date = inputFormat.parse(this.createdAt);
             PrettyTime prettyTime = new PrettyTime();
             elapsedTime = prettyTime.format(date);

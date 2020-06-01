@@ -1,14 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".barber.ui.AppointmentsFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".barber.ui.NotificationsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:background="@android:color/black"
+        >
 
-</FrameLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30sp"
+            android:text="@string/appointments"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:padding="5dp"/>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/calendarView"
+        android:theme="@style/CalendarStyle"
+        app:mcv_selectionMode="single"
+        app:mcv_tileHeight="30dp"
+
+        app:mcv_selectionColor="@color/colorAccent"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="?attr/actionBarSize"
+        android:id="@+id/appointments_recyclerview"
+        tools:listitem="@layout/item_appointments"/>
+
+
+
+
+</LinearLayout>

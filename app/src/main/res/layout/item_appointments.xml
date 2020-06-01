@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/black"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/iv_client_avatar"
+        android:src="@mipmap/ic_launcher_round"
+        android:padding="10dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_client_name"
+        android:text="Filan Fisteku"
+        android:layout_marginTop="5dp"
+        android:padding="10dp"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/iv_client_avatar"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_services"
+        android:text="Hairwash + Haircut"
+        android:textColor="@color/colorAccent"
+        android:paddingLeft="10dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_client_name"
+        app:layout_constraintLeft_toRightOf="@id/iv_client_avatar" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_time"
+        android:text="9:15 AM"
+        android:textColor="@android:color/white"
+        android:padding="10dp"
+        android:textSize="16sp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_status"
+        android:text="CONFIRMED"
+        android:paddingRight="10dp"
+        android:textSize="16sp"
+        android:textColor="@android:color/holo_green_light"
+        app:layout_constraintTop_toBottomOf="@id/tv_time"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -76,7 +76,7 @@ public class ReviewsFragment extends Fragment {
         reviewsAdapter.notifyDataSetChanged();
         for(Review review : reviews){
             reviewList.add(review);
-            reviewsAdapter.notifyItemInserted(reviews.indexOf(review));
+            reviewsAdapter.notifyItemInserted(reviewList.indexOf(review));
         }
     }
 }

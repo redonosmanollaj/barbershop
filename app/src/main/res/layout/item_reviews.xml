@@ -68,7 +68,4 @@
         android:text="Very good barber !"
         android:textColor="@android:color/white"
         android:layout_marginTop="10dp"/>
-
-
-
 </LinearLayout>

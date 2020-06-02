@@ -11,14 +11,13 @@ import androidx.fragment.app.Fragment;
 
 import com.example.barbershop.R;
 
-public class ProfileFragment extends Fragment {
-    public ProfileFragment() {
-        //blank constructor
-    }
+public class FavoritesFragment extends Fragment
+{
+    public FavoritesFragment(){}
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_client_profile, container, false);
+        return inflater.inflate(R.layout.fragment_client_favorites, container, false);
     }
 }

@@ -8,6 +8,10 @@
         android:icon="@drawable/ic_perm_identity_black_24dp"
         android:id="@+id/profile_navbar"/>
     <item
+        android:title="FAVORITES"
+        android:icon="@drawable/ic_star_black_24dp"
+        android:id="@+id/favorites_navbar"/>
+    <item
         android:title="SEARCH"
         android:icon="@drawable/ic_search_black_24dp"
         android:id="@+id/search_navbar" />
@@ -15,4 +19,5 @@
         android:title="SETTINGS"
         android:icon="@drawable/ic_settings_black_24dp"
         android:id="@+id/setting_navbar"/>
+
 </menu>

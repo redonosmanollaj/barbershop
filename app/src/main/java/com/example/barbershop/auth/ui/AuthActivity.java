@@ -33,7 +33,7 @@ public class AuthActivity extends AppCompatActivity implements LoginFragment.OnL
         setContentView(R.layout.activity_auth);
 
         authPreference = new AuthPreference(this);
-        //authPreference.setLoggedIn(false);
+        authPreference.setLoggedIn(false);
         if(authPreference.isLoggedIn()){
             startBarberActivity();
             finish();
@@ -60,7 +60,10 @@ public class AuthActivity extends AppCompatActivity implements LoginFragment.OnL
         authPreference.setToken(token);
         authPreference.setName(user.getName());
         this.user = user;
-        startBarberActivity();
+        if(user.getRole().equals("barber"))
+            startBarberActivity();
+        else
+            startClientActivity();
         finish();
     }
 
@@ -72,7 +75,8 @@ public class AuthActivity extends AppCompatActivity implements LoginFragment.OnL
 
     private void startClientActivity(){
         Intent intent = new Intent(this, ClientActivity.class);
-        intent.putExtra("name", user.getName());
+        intent.putExtra("name", authPreference.getName());
+        startActivity(intent);
     }
 
 

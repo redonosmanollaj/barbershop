@@ -8,6 +8,7 @@ import com.example.barbershop.models.User;
 public class AuthPreference {
     private static final String LOGIN_STATE = "login_state";
     private static final String TOKEN = "token";
+    private static final String NAME = "name";
 
     private SharedPreferences preferences;
 
@@ -29,6 +30,14 @@ public class AuthPreference {
 
     public void setToken(String token){
         preferences.edit().putString(TOKEN,token).apply();
+    }
+
+    public String getName(){
+        return preferences.getString(NAME,null);
+    }
+
+    public void setName(String name){
+        preferences.edit().putString(NAME,name).apply();
     }
 
 }

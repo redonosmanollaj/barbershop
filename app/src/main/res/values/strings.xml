@@ -59,4 +59,7 @@
     <string name="completed">Completed</string>
     <string name="no_show">No show</string>
 
+    <!-- Clients -->
+    <string name="clients">CLIENTS</string>
+
 </resources>

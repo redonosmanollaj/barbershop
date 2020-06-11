@@ -10,12 +10,16 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.barbershop.R;
+import com.example.barbershop.auth.data.AuthPreference;
+import com.example.barbershop.auth.ui.AuthActivity;
 import com.example.barbershop.barber.ui.profile.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class BarberActivity extends AppCompatActivity {
+public class BarberActivity extends AppCompatActivity implements SettingsFragment.OnLogoutListener {
     private BottomNavigationView bottomNavigation;
     private String userName;
+    private AuthPreference authPreference;
+
     Fragment active;
     Fragment profileFragment = new ProfileFragment();
     Fragment appointmentsFragment;
@@ -29,6 +33,8 @@ public class BarberActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         userName = intent.getStringExtra("name");
+
+        authPreference = new AuthPreference(this);
 
         active = profileFragment;
         final FragmentManager fm = getSupportFragmentManager();
@@ -80,4 +86,17 @@ public class BarberActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onLogout() {
+        authPreference.setLoggedIn(false);
+        authPreference.setToken(null);
+        authPreference.setName(null);
+        startAuthActivity();
+        finish();
+    }
+
+    private void startAuthActivity(){
+        Intent intent = new Intent(this, AuthActivity.class);
+        startActivity(intent);
+    }
 }

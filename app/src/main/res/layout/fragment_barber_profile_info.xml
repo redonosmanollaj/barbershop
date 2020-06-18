@@ -57,19 +57,19 @@
                 android:id="@+id/tv_barbershop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Trimi's Barbershop" />
+                 />
 
             <TextView
                 android:id="@+id/tv_street"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1816 Lynn Street" />
+                 />
 
             <TextView
                 android:id="@+id/tv_building"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Building" />
+                 />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -81,13 +81,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="15dp"
-                    android:text="New York" />
+                     />
 
                 <TextView
                     android:id="@+id/tv_country"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="USA" />
+                     />
             </LinearLayout>
         </LinearLayout>
 
@@ -155,137 +155,9 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
-        <!-- DELETE THIS -->
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@android:color/black">
-
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Monday"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20sp"
-                    android:text="9am - 6pm" />
-
-            </LinearLayout>
-
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Monday"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20sp"
-                    android:text="9am - 6pm" />
-
-            </LinearLayout>
-
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Monday"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20sp"
-                    android:text="9am - 6pm" />
-
-            </LinearLayout>
-
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Monday"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20sp"
-                    android:text="9am - 6pm" />
-
-            </LinearLayout>
-
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Monday"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20sp"
-                    android:text="9am - 6pm" />
-
-            </LinearLayout>
-
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Monday"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20sp"
-                    android:text="9am - 6pm" />
-
-            </LinearLayout>
         </LinearLayout>
 
-        <!-- _______________ -->
-
-<!--                <androidx.recyclerview.widget.RecyclerView-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:id="@+id/image_gallery"/>-->
 
 
-    </LinearLayout>
 
 </ScrollView>

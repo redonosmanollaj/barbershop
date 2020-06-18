@@ -99,11 +99,8 @@ public class InfoFragment extends Fragment {
     }
 
     private void setInfo(Info info){
-        if(info != null){
-            setLocation(info.getLocation());
-            setHours(info.getHours());
-        }
-
+        setLocation(info.getLocation());
+        setHours(info.getHours());
     }
 
     private void startFragment(Fragment fragment){

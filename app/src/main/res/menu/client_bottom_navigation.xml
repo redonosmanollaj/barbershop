@@ -8,9 +8,9 @@
         android:icon="@drawable/ic_perm_identity_black_24dp"
         android:id="@+id/profile_navbar"/>
     <item
-        android:title="FAVORITES"
+        android:title="REVIEWS"
         android:icon="@drawable/ic_star_black_24dp"
-        android:id="@+id/favorites_navbar"/>
+        android:id="@+id/reviews_navbar"/>
     <item
         android:title="SEARCH"
         android:icon="@drawable/ic_search_black_24dp"

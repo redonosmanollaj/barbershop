@@ -11,12 +11,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.barbershop.R;
-import com.example.barbershop.barber.ui.AppointmentsFragment;
-import com.example.barbershop.barber.ui.ClientsFragment;
-import com.example.barbershop.barber.ui.NotificationsFragment;
-import com.example.barbershop.barber.ui.SettingsFragment;
-import com.example.barbershop.barber.ui.profile.ProfileFragment;
 import com.example.barbershop.client.ui.fragments.HomeFragment;
+import com.example.barbershop.client.ui.fragments.FavoritesFragment;
+import com.example.barbershop.client.ui.fragments.ProfileFragment;
+import com.example.barbershop.client.ui.fragments.SearchFragment;
+import com.example.barbershop.client.ui.fragments.SettingsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class ClientActivity extends AppCompatActivity {
@@ -24,9 +23,8 @@ public class ClientActivity extends AppCompatActivity {
     private BottomNavigationView clientBottomNavigation;
     private String username;
     Fragment homeFragment;
-    Fragment profileFragment;
+    Fragment profileFragment = new ProfileFragment();
     Fragment favoritesFragment;
-    Fragment appointmentsFragment;
     Fragment searchFragment;
     Fragment settingsFragment;
     Fragment active;
@@ -63,12 +61,12 @@ public class ClientActivity extends AppCompatActivity {
                         active = profileFragment;
                         break;
                     case R.id.search_navbar:
-                        if (searchFragment == null) searchFragment = new ClientsFragment();
+                        if (searchFragment == null) searchFragment = new SearchFragment();
                         active = searchFragment;
                         break;
-                    case R.id.favorites_navbar:
+                    case R.id.reviews_navbar:
                         if (favoritesFragment == null)
-                            favoritesFragment = new NotificationsFragment();
+                            favoritesFragment = new FavoritesFragment();
                         active = favoritesFragment;
                         break;
                     case R.id.setting_navbar:
@@ -87,5 +85,7 @@ public class ClientActivity extends AppCompatActivity {
             }
 
         });
+
+
     }
 }

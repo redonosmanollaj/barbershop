@@ -1,5 +1,6 @@
 package com.example.barbershop.barber.viewmodels;
 
+import android.annotation.SuppressLint;
 import android.app.Application;
 import android.os.AsyncTask;
 
@@ -30,6 +31,7 @@ public class ServicesViewModel extends AndroidViewModel {
         return data;
     }
 
+    @SuppressLint("StaticFieldLeak")
     private void loadData(){
         new AsyncTask<Void,Void,List<Service>>(){
 

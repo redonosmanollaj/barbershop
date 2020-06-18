@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimary"
+    android:layout_margin="10sp"
+    >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="A"
+        android:textColor="@color/colorTextHint"
+        android:textAlignment="center"
+        android:paddingTop="30sp"
+        android:textSize="60sp"
+        />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="22sp"
+        android:id="@+id/fav_barber_name"
+        android:textAlignment="center"
+        android:layout_marginTop="20sp"
+        android:textColor="@color/colorTextHint"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Book Appointment"
+        android:textSize="18sp"
+        android:layout_marginLeft="5sp"
+        android:layout_marginRight="5sp"
+        android:padding="5sp"
+        android:background="@color/colorAccent"
+        android:textColor="@color/colorTextHint"/>
+</LinearLayout>

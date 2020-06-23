@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,10 +13,13 @@ import android.view.MenuItem;
 import com.example.barbershop.R;
 import com.example.barbershop.auth.data.AuthPreference;
 import com.example.barbershop.auth.ui.AuthActivity;
+import com.example.barbershop.barber.ui.profile.EditLocationFragment;
+import com.example.barbershop.barber.ui.profile.InfoFragment;
 import com.example.barbershop.barber.ui.profile.ProfileFragment;
+import com.example.barbershop.models.Location;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class BarberActivity extends AppCompatActivity implements SettingsFragment.OnLogoutListener {
+public class BarberActivity extends AppCompatActivity implements SettingsFragment.OnLogoutListener, EditLocationFragment.OnEditLocationListener {
     private BottomNavigationView bottomNavigation;
     private String userName;
     private AuthPreference authPreference;
@@ -98,5 +102,11 @@ public class BarberActivity extends AppCompatActivity implements SettingsFragmen
     private void startAuthActivity(){
         Intent intent = new Intent(this, AuthActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void onEditLocation(Location location) {
+        InfoFragment infoFragment = (InfoFragment)getSupportFragmentManager().findFragmentByTag();//TODO: HERE ...
+        infoFragment.setLocation(location);
     }
 }

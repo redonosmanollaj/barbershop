@@ -77,7 +77,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/et_barbershop_name"
-            android:text="Trimi Barbershop"
             android:maxLines="1"
             android:textColor="@android:color/white"/>
     </LinearLayout>
@@ -96,7 +95,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Washington"
+            android:id="@+id/et_street"
             android:maxLines="1"
             android:textColor="@android:color/white"/>
     </LinearLayout>
@@ -114,7 +113,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cima construction"
+            android:id="@+id/et_building"
             android:maxLines="1"
             android:textColor="@android:color/white"/>
     </LinearLayout>
@@ -132,7 +131,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Prishtine"
+            android:id="@+id/et_city"
             android:maxLines="1"
             android:textColor="@android:color/white"/>
     </LinearLayout>
@@ -150,7 +149,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Kosove"
+            android:id="@+id/et_country"
             android:maxLines="1"
             android:textColor="@android:color/white"/>
     </LinearLayout>

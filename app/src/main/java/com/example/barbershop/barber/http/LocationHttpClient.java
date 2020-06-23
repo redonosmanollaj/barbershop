@@ -7,11 +7,14 @@ import com.example.barbershop.models.Location;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.threeten.bp.LocalDate;
 
 import java.io.IOException;
 
+import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 
@@ -72,8 +75,43 @@ public class LocationHttpClient extends BaseHttpClient{
         //TODO: insert location with POST
     }
 
-    public void editLocation(){
-        //TODO: update location with PUT
+    public Location editLocation(){
+        Location location = null;
+
+        RequestBody requestBody = new FormBody.Builder()
+                .add("barbershop",barbershop)
+                .add("street",street)
+                .add("building",building)
+                .add("city",city)
+                .add("country",country)
+                .build();
+
+        Request request = new Request.Builder()
+                .url(BASE_URL+LOCATION_PATH)
+                .addHeader("Authorization","Bearer "+token)
+                .put(requestBody)
+                .build();
+
+        try{
+            Response response = httpClient
+                    .newCall(request).execute();
+            ResponseBody responseBody = response.body();
+            if(responseBody != null){
+                String json = responseBody.string();
+                JSONObject jsonObject = new JSONObject(json);
+                location = new Location(jsonObject.getString("barbershop"),
+                        jsonObject.getString("street"),
+                        jsonObject.getString("building"),
+                        jsonObject.getString("city"),
+                        jsonObject.getString("country"));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return location;
     }
 
 

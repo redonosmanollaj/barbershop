@@ -28,7 +28,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class InfoFragment extends Fragment {
+public class InfoFragment extends Fragment implements EditLocationFragment.OnEditLocationListener{
 
     private TextView tvBarbershop, tvStreet, tvBuilding, tvCity, tvCountry;
     private InfoViewModel viewModel;
@@ -73,7 +73,7 @@ public class InfoFragment extends Fragment {
         return root;
     }
 
-    private void setLocation(Location location){
+    public void setLocation(Location location){
         tvBarbershop.setText(location.getBarbershop());
         tvStreet.setText(location.getStreet());
         tvBuilding.setText(location.getBuilding());
@@ -106,10 +106,21 @@ public class InfoFragment extends Fragment {
     }
 
     private void startFragment(Fragment fragment){
+        Bundle arguments = new Bundle();
+        arguments.putString("barbershop",tvBarbershop.getText().toString());
+        arguments.putString("street",tvStreet.getText().toString());
+        arguments.putString("building",tvBuilding.getText().toString());
+        arguments.putString("city",tvCity.getText().toString());
+        arguments.putString("country",tvCountry.getText().toString());
+        fragment.setArguments(arguments);
         getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.nav_host_fragment,fragment)
+                .replace(R.id.nav_host_fragment,fragment,"EDIT_LOCATION_TAG")
                 .addToBackStack(null)
                 .commit();
     }
 
+    @Override
+    public void onEditLocation(Location location) {
+        setLocation(location);
+    }
 }

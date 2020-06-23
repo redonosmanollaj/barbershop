@@ -20,7 +20,7 @@ import com.google.android.material.tabs.TabLayout;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AuthActivity extends AppCompatActivity implements LoginFragment.OnLoginListener{
+public class AuthActivity extends AppCompatActivity implements LoginFragment.OnLoginListener, SignupFragment.OnSignupListener{
 
     TabLayout authTabLayout;
     ViewPager authViewPager;
@@ -56,6 +56,19 @@ public class AuthActivity extends AppCompatActivity implements LoginFragment.OnL
 
     @Override
     public void onLogin(String token, User user) {
+        authPreference.setLoggedIn(true);
+        authPreference.setToken(token);
+        authPreference.setName(user.getName());
+        this.user = user;
+        if(user.getRole().equals("barber"))
+            startBarberActivity();
+        else
+            startClientActivity();
+        finish();
+    }
+
+    @Override
+    public void onSignup(String token, User user) {
         authPreference.setLoggedIn(true);
         authPreference.setToken(token);
         authPreference.setName(user.getName());

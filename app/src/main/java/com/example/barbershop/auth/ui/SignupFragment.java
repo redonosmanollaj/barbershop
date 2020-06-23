@@ -1,7 +1,9 @@
 package com.example.barbershop.auth.ui;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -19,6 +21,9 @@ import android.widget.Toast;
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.example.barbershop.R;
+import com.example.barbershop.auth.http.LoginHttpClient;
+import com.example.barbershop.auth.http.SignupHttpClient;
+import com.example.barbershop.models.User;
 
 public class SignupFragment extends Fragment {
 
@@ -26,6 +31,13 @@ public class SignupFragment extends Fragment {
     Switch sIsBarber;
     Button btnSignup;
     private AwesomeValidation awesomeValidation;
+
+    public interface OnSignupListener{
+        void onSignup(String token, User user);
+    }
+
+    private SignupFragment.OnSignupListener signupListener;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -59,13 +71,69 @@ public class SignupFragment extends Fragment {
     }
 
     @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if(context instanceof OnSignupListener){
+            signupListener =  (OnSignupListener) context;
+        } else {
+            throw new RuntimeException(context.toString() + " must implement OnLoginListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        signupListener = null;
+    }
+
+    @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
     }
 
     private void submitSignup(){
         if(awesomeValidation.validate()){
-            Toast.makeText(getContext(),"Validation successful",Toast.LENGTH_LONG).show();
+            if(!etPassword.getText().toString().equals(etConfirmPassword.getText().toString())){
+                Toast.makeText(getContext(),"Passwords doesn't match!",Toast.LENGTH_LONG).show();
+                return;
+            }
+            new SignupAsyncTask().execute();
+        }
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    class SignupAsyncTask extends AsyncTask<Void,Void,User> {
+
+        private String name, email, phone, password, password_confirmation, role;
+
+        @Override
+        protected void onPreExecute() {
+            this.name = etName.getText().toString();
+            this.email = etEmail.getText().toString();
+            this.phone = etPhone.getText().toString();
+            this.password = etPassword.getText().toString();
+            this.password_confirmation = etConfirmPassword.getText().toString();
+            if (sIsBarber.isChecked())
+                this.role = "barber";
+            else
+                this.role = "client";
+        }
+
+        @Override
+        protected User doInBackground(Void... voids) {
+            SignupHttpClient httpClient = new SignupHttpClient(name, email, phone, password, password_confirmation, role);
+            String token = httpClient.signup();
+
+            LoginHttpClient loginHttpClient = new LoginHttpClient(email, password);
+
+            User user = null;
+            if (token != null) {
+                user = loginHttpClient.getUser(token);
+                if (signupListener != null)
+                    signupListener.onSignup(token, user);
+            }
+            return user;
+
         }
     }
 }

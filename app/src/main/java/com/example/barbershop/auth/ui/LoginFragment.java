@@ -124,8 +124,6 @@ public class LoginFragment extends Fragment {
             LoginHttpClient httpClient = new LoginHttpClient(email,password);
             String token = httpClient.getToken();
 
-            // SAVE TOKEN TO SHARED PREFERENCES
-            AuthPreference preference;
             User user = null;
             if(token != null){
                 user = httpClient.getUser(token);

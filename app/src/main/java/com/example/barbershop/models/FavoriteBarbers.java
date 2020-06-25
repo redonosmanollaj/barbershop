@@ -13,14 +13,6 @@ public class FavoriteBarbers
         this.name = name;
     }
 
-    public FavoriteBarbers(String name, String email, String phone, String emailVerifiedAt, String createdAt, String updatetAt) {
-        this.name = name;
-        this.email = email;
-        this.phone = phone;
-        this.emailVerifiedAt = emailVerifiedAt;
-        this.createdAt = createdAt;
-        this.updatetAt = updatetAt;
-    }
 
     public FavoriteBarbers(String name, String email) {
         this.name = name;

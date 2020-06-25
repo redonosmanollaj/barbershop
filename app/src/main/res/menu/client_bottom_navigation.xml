@@ -3,14 +3,9 @@
     <item android:title="HOME"
         android:icon="@drawable/ic_home_black_24dp"
         android:id="@+id/home_navbar" />
-    <item
-        android:title="PROFILE"
-        android:icon="@drawable/ic_perm_identity_black_24dp"
-        android:id="@+id/profile_navbar"/>
-    <item
-        android:title="REVIEWS"
-        android:icon="@drawable/ic_star_black_24dp"
-        android:id="@+id/reviews_navbar"/>
+    <item android:title="APPOINTMENT"
+        android:id="@+id/appointment_navbar"
+        android:icon="@drawable/ic_assignment_black_24dp"/>
     <item
         android:title="SEARCH"
         android:icon="@drawable/ic_search_black_24dp"
@@ -19,5 +14,4 @@
         android:title="SETTINGS"
         android:icon="@drawable/ic_settings_black_24dp"
         android:id="@+id/setting_navbar"/>
-
 </menu>

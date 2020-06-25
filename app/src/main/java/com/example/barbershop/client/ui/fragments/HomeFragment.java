@@ -1,46 +1,42 @@
 package com.example.barbershop.client.ui.fragments;
 
-import android.nfc.Tag;
+import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.barbershop.GlobalVariables;
 import com.example.barbershop.R;
-import com.example.barbershop.auth.data.AuthPreference;
-import com.example.barbershop.barber.http.BaseHttpClient;
 import com.example.barbershop.client.adapters.FavBarberAdapter;
+import com.example.barbershop.client.viewmodels.MyBarbersViewModel;
+import com.example.barbershop.models.Barber;
 import com.example.barbershop.models.FavoriteBarbers;
-
-import org.jetbrains.annotations.NotNull;
-
-import java.io.IOException;
 import java.util.ArrayList;
-
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-
+import java.util.List;
+import java.util.Objects;
 
 public class HomeFragment extends Fragment
 {
-    private ArrayList<FavoriteBarbers> favoriteBarbers;
-    private FavBarberAdapter barberAdapter;
-    private Button findBarbers;
-    private Request request;
-    private OkHttpClient okHttpClient;
-    private RecyclerView recyclerView;
+    TextView tvMyBarbers;
+    TextView tvProfileLetter;
+    Button findBarbers;
+    private MutableLiveData<List<Barber>> data;
+
+    MyBarbersViewModel viewModel;
+    FavBarberAdapter myBarbersAdapter;
+    RecyclerView recyclerView;
+    String username;
+    List<FavoriteBarbers> myBarbersList = new ArrayList<>();
+
 
     public HomeFragment() {
         //blank constructor
@@ -51,66 +47,63 @@ public class HomeFragment extends Fragment
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
         View view = inflater.inflate(R.layout.fragment_client_home, container, false);
+
         findBarbers = view.findViewById(R.id.client_find_barbers);
         recyclerView = view.findViewById(R.id.barbers_recyclerview);
-        okHttpClient = new OkHttpClient();
-        favoriteBarbers = new ArrayList<>();
+        tvMyBarbers = view.findViewById(R.id.fav_barber_name);
+        myBarbersAdapter = new FavBarberAdapter(myBarbersList);
+        tvProfileLetter = view.findViewById(R.id.profile_letter);
 
-//        try
-//        {
-//            request = new Request.Builder().
-//                    url(myBarbersURL).
-//                    addHeader("token", "")
-//                    .build();
-//            okHttpClient.newCall(request).enqueue(new Callback() {
-//                @Override
-//                public void onFailure(@NotNull Call call, @NotNull IOException e) {
-//                    Log.i("fail", e.getMessage());
-//                }
-//
-//                @Override
-//                public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-//                    Log.i("data", response.body().string());
-//                }
-//            });
-//        } catch (Exception e)
-//        {
-//            e.printStackTrace();
-//        }
-        String[] myBarbers = {"Filani", "Fisteku", "Filani", "Fisteku","asdads","asdasd","asdasd"};
-        favoriteBarbers = new ArrayList<>();
-        for(int i=0; i<myBarbers.length; i++)
-        {
-            favoriteBarbers.add(new FavoriteBarbers(myBarbers[i]));
-        }
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(
-                getActivity(), LinearLayoutManager.HORIZONTAL, false
-        );
-
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-
-        barberAdapter = new FavBarberAdapter(getActivity(), favoriteBarbers);
-        recyclerView.setAdapter(barberAdapter);
-
-
-        findBarbers.setOnClickListener(new View.OnClickListener() {
+        viewModel = ViewModelProviders.of(this).get(MyBarbersViewModel.class);
+        viewModel.getData().observe(this, new Observer<List<FavoriteBarbers>>() {
             @Override
-            public void onClick(View v) {
-                startActivity(new SearchFragment());
+            public void onChanged(List<FavoriteBarbers> favoriteBarbers) {
+                if(favoriteBarbers != null) setFavoriteBarbers(favoriteBarbers);
             }
+        });
+
+        Bundle args = getArguments();
+
+        if (args != null) username = args.getString("name");
+        if (username != null) tvProfileLetter.setText(username.substring(0,1));
+
+
+        findBarbers.setOnClickListener((e) -> {
+            startActivity(new SearchFragment());
         });
         return view;
     }
 
+    private void setFavoriteBarbers(List<FavoriteBarbers> favoriteBarbers)
+    {
+        myBarbersList.clear();
+        myBarbersAdapter.notifyDataSetChanged();
+        for (FavoriteBarbers favoriteBarber : favoriteBarbers)
+        {
+            myBarbersList.add(favoriteBarber);
+            myBarbersAdapter.notifyItemInserted(myBarbersList.indexOf(favoriteBarber));
+        }
+    }
+
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
+    {
+        super.onViewCreated(view, savedInstanceState);
+
+        Context context = view.getContext();
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
+        linearLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
+
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(myBarbersAdapter);
+    }
+
     private void startActivity(Fragment fragment)
     {
-        getActivity().getSupportFragmentManager().beginTransaction()
+        Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction()
                 .replace(R.id.nav_client_fragment, fragment)
                 .addToBackStack(null)
                 .commit();
     }
-
-
 }

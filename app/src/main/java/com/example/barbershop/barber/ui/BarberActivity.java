@@ -106,7 +106,7 @@ public class BarberActivity extends AppCompatActivity implements SettingsFragmen
 
     @Override
     public void onEditLocation(Location location) {
-        InfoFragment infoFragment = (InfoFragment)getSupportFragmentManager().findFragmentByTag();//TODO: HERE ...
-        infoFragment.setLocation(location);
+       // InfoFragment infoFragment = (InfoFragment)getSupportFragmentManager().findFragmentByTag();//TODO: HERE ...
+       // infoFragment.setLocation(location);
     }
 }

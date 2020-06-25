@@ -1,6 +1,7 @@
 package com.example.barbershop.client.http;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.example.barbershop.GlobalVariables;
 import com.example.barbershop.client.http.BaseHttpClient;
@@ -33,25 +34,25 @@ public class MyBarbersHttp extends BaseHttpClient
                 .url(myBarbersURL)
                 .addHeader("Authorization", "Bearer "+token)
                 .build();
-
-        Response response = httpClient.newCall(request).execute();
-        ResponseBody responseBody = response.body();
         try
         {
+            Response response = httpClient.newCall(request).execute();
+            ResponseBody responseBody = response.body();
+
             if(responseBody != null)
             {
                 String json = responseBody.string();
                 JSONArray jsonArray = new JSONArray(json);
-
                 for(int i=0; i<jsonArray.length(); i++)
                 {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
-                    FavoriteBarbers favoriteBarbers = new FavoriteBarbers(
+                    FavoriteBarbers favoriteBarber = new FavoriteBarbers(
                             jsonObject.getString("name"),
                             jsonObject.getString("phone")
                     );
-                    favbarbers.add(favoriteBarbers);
+                    favbarbers.add(favoriteBarber);
                 }
+                Log.i("Result", favbarbers.toString());
             }
         }
         catch(IOException | JSONException e)

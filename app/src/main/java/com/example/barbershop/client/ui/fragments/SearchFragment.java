@@ -20,24 +20,19 @@ import com.example.barbershop.client.viewmodels.SearchedBarbersViewModel;
 import com.example.barbershop.models.Barber;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
-public class SearchFragment extends Fragment {
+public class SearchFragment extends Fragment implements SearchedBarbersAdapter.onBarberListener {
     public SearchFragment() {}
 
     private EditText etSearch;
     private ImageButton btnSearch;
-    private TextView tvSearchedBarber;
+    private TextView tvSearchedBarber, tvBlankList;
     private RecyclerView recyclerView;
-//    SearchFragment s = new SearchFragment();
-//    private SearchFragment.SearchedBarbersViewModel viewModel = s.new SearchedBarbersViewModel();
     private SearchedBarbersViewModel viewModel;
-//    private MutableLiveData<List<Barber>> data;
-//    MutableLiveData searchBarbersAsyncTaskobj;
-
-    private static String name;
     private SearchedBarbersAdapter searchedBarbersAdapter;
     private List<Barber> searchResultList = new ArrayList<>();
-
+    private static String name;
 
     @Nullable
     @Override
@@ -49,9 +44,10 @@ public class SearchFragment extends Fragment {
         btnSearch = view.findViewById(R.id.btn_search_barbers);
         tvSearchedBarber = view.findViewById(R.id.tv_searched_barber);
         recyclerView = view.findViewById(R.id.search_barber_recyclerView);
-        searchedBarbersAdapter = new SearchedBarbersAdapter(searchResultList);
+        searchedBarbersAdapter = new SearchedBarbersAdapter(searchResultList, this);
+        tvBlankList = view.findViewById(R.id.blank_list_notification);
 
-        btnSearch.setOnClickListener(v -> btnSearchClicked());
+        btnSearch.setOnClickListener(v -> displaySearchResult());
 
         return view;
     }
@@ -75,22 +71,32 @@ public class SearchFragment extends Fragment {
         }
     }
 
-    private void btnSearchClicked()
+    private void displaySearchResult()
     {
-        setName(getName());
+        name = etSearch.getText().toString();
+        setName(name);
         tvSearchedBarber.setText(name);
-        tvSearchedBarber.setVisibility(View.VISIBLE);
+        if(name != "")
+            tvSearchedBarber.setVisibility(View.VISIBLE);
+        else
+            tvSearchedBarber.setVisibility(View.INVISIBLE);
         etSearch.setText("");
 
         getLiveData();
     }
 
+    private void clear() {
+        searchResultList.clear();
+        searchedBarbersAdapter.notifyDataSetChanged();
+    }
+
     private void getLiveData()
     {
-        try {
+        try
+        {
             viewModel = ViewModelProviders.of(this).get(SearchedBarbersViewModel.class);
             viewModel.getData().observe(this, (barbers)-> {
-                if(barbers != null) setSearchResult(barbers);
+                setSearchResult(barbers);
             });
         }
         catch (Exception e){
@@ -98,11 +104,39 @@ public class SearchFragment extends Fragment {
         }
     }
 
-    public String getName() { return this.etSearch.getText().toString(); }
     public void setName(String name) { SearchFragment.name = name;}
 
     public static String GetName() {
         return name;
     }
 
+    private void startActivity(Fragment fragment)
+    {
+        try {
+            Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.nav_client_fragment, fragment)
+                    .addToBackStack(null)
+                    .commit();
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onBarberClick(int position)
+    {
+        String name = Objects.requireNonNull(viewModel.getData().getValue()).get(position).getName();
+        ProfileFragment profileFragment = new ProfileFragment();
+        Bundle args = new Bundle();
+        args.putString("barber_name", name);
+        args.putString("barbershop", viewModel.getData().getValue().get(position).getBarbershop());
+        args.putString("street", viewModel.getData().getValue().get(position).getStreet());
+        args.putString("building", viewModel.getData().getValue().get(position).getBuilding());
+        args.putString("city", viewModel.getData().getValue().get(position).getCity());
+        args.putString("country", viewModel.getData().getValue().get(position).getCountry());
+        args.putString("phone", viewModel.getData().getValue().get(position).getPhone());
+
+        profileFragment.setArguments(args);
+        startActivity(profileFragment);
+    }
 }

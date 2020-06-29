@@ -6,16 +6,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
-    android:padding="10sp">
+    >
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/et_search_barbers"
-        android:textSize="20sp"
+        android:textSize="18sp"
+        android:paddingTop="20sp"
+        android:layout_marginLeft="20sp"
+        android:layout_marginRight="20sp"
         android:textColor="@color/colorTextHint"
         android:imeOptions="actionGo"
+        android:backgroundTint="@color/colorAccent"
+
         />
 
     <ImageButton
@@ -28,6 +33,7 @@
         android:id="@+id/btn_search_barbers"
         app:layout_constraintBottom_toBottomOf="@+id/et_search_barbers"
         android:paddingBottom="10sp"
+
         />
 
     <TextView
@@ -36,6 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="10sp"
         android:gravity="center"
+        android:textColor="@color/colorTextHint"
         android:visibility="invisible"
         android:textSize="21sp"
         android:background="@color/colorPrimary"
@@ -44,6 +51,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_search_barbers" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No Results"
+        app:layout_constraintTop_toBottomOf="@+id/tv_searched_barber"
+        app:layout_constraintLeft_toRightOf="parent"
+        app:layout_constraintRight_toLeftOf="parent"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textColor="#818181"
+        android:id="@+id/blank_list_notification"
+        android:layout_marginBottom="10sp"
+        android:visibility="invisible"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"

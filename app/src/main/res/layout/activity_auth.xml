@@ -9,6 +9,7 @@
     android:background="@drawable/auth_background"
     tools:context=".auth.ui.AuthActivity"
     android:paddingRight="30dp"
+    android:id="@+id/Auth"
     android:paddingLeft="30dp">
 
 

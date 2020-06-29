@@ -32,7 +32,6 @@ public class MyBarbersViewModel extends AndroidViewModel
         return data;
     }
 
-
     @SuppressLint("StaticFieldLeak")
     private void loadData()
     {

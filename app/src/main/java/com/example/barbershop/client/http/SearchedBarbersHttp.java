@@ -53,7 +53,14 @@ public class SearchedBarbersHttp extends BaseHttpClient {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
                     Barber barber = new Barber(
                             jsonObject.getString("name"),
-                            jsonObject.getJSONObject("location").getString("city")
+                            jsonObject.getString("phone"),
+                            jsonObject.getJSONObject("location").getInt("id"),
+                            jsonObject.getJSONObject("location").getInt("user_id"),
+                            jsonObject.getJSONObject("location").getString("barbershop"),
+                            jsonObject.getJSONObject("location").getString("street"),
+                            jsonObject.getJSONObject("location").getString("building"),
+                            jsonObject.getJSONObject("location").getString("city"),
+                            jsonObject.getJSONObject("location").getString("country")
                     );
                     searchedBarbers.add(barber);
                 }

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:theme="@style/ProfileFragmentTheme"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".barber.ui.profile.ProfileFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:gravity="center"
+        android:id="@+id/header_"
+        android:orientation="vertical"
+        android:paddingTop="30dp"
+        android:paddingBottom="0dp"
+        android:background="@drawable/profile_background"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/iv_avatar"
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/avatar"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/tv_fullname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Filan Fisteku"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/colorAccent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_avatar"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+<com.google.android.material.appbar.AppBarLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/appBarLayout"
+    android:background="@android:color/transparent"
+    app:layout_constraintTop_toBottomOf="@+id/header_"
+    >
+
+</com.google.android.material.appbar.AppBarLayout>
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_constraintTop_toBottomOf="@+id/header_"
+    android:orientation="vertical">
+    <com.google.android.material.tabs.TabLayout
+        app:tabBackground="@color/colorPrimaryDark"
+        android:id="@+id/tablayout_profile_"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        app:tabTextColor="@color/colorPrimary"
+
+        app:tabSelectedTextColor="@color/colorAccent"
+        android:layout_gravity="bottom">
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/profile_viewpager_"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+</LinearLayout>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

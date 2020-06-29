@@ -61,5 +61,6 @@
 
     <!-- Clients -->
     <string name="clients">CLIENTS</string>
+    <string name="book">Book</string>
 
 </resources>

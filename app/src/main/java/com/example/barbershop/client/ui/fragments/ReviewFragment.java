@@ -8,17 +8,25 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
 import com.example.barbershop.R;
+import com.google.android.material.tabs.TabLayout;
 
-public class AppointmentFragment extends Fragment {
-    public AppointmentFragment() {
-        //blank constructor
-    }
+public class ReviewFragment extends Fragment {
+    private View v;
+
+
+    public ReviewFragment(){}
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_client_appointment, container, false);
+        v = inflater.inflate(R.layout.fragment_client_reviews, container, false);
+
+
+
+
+        return super.onCreateView(inflater, container, savedInstanceState);
     }
 }

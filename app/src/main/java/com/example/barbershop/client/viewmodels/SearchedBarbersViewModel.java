@@ -3,16 +3,12 @@ package com.example.barbershop.client.viewmodels;
 import android.annotation.SuppressLint;
 import android.app.Application;
 import android.os.AsyncTask;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-
 import com.example.barbershop.client.http.SearchedBarbersHttp;
 import com.example.barbershop.models.Barber;
-
-
 import java.util.ArrayList;
 import java.util.List;
 

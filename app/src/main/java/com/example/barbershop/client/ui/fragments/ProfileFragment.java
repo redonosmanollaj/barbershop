@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -20,11 +21,9 @@ import java.util.Objects;
 
 public class ProfileFragment extends Fragment {
 
-    private TextView etBarberName;
-    private TabLayout tabLayout;
-    private AppBarLayout appBarLayout;
-    private ViewPager viewPager;
 
+    private TextView tvBarberName, tvCity, tvCountry, tvStreet, tvBuilding, tvbarbershop;
+    private Button btnBook;
     private String name;
     private String city, country, street, building, barbershop;
 
@@ -38,11 +37,13 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v =inflater.inflate(R.layout.fragment_clinet_barber_profile, container, false);
-        etBarberName = v.findViewById(R.id.tv_fullname);
-        tabLayout = v.findViewById(R.id.tablayout_profile_);
-        appBarLayout = v.findViewById(R.id.appBarLayout);
-        viewPager = v.findViewById(R.id.profile_viewpager_);
-        adapter = new ProfileBarberSectionPagerAdapter(getChildFragmentManager());
+        tvBarberName = v.findViewById(R.id.tv_fullname);
+        tvCity = v.findViewById(R.id.tv_address_city);
+        tvCountry = v.findViewById(R.id.tv_address_country);
+        tvStreet = v.findViewById(R.id.tv_address_street);
+        tvBuilding = v.findViewById(R.id.tv_address_building);
+        tvbarbershop = v.findViewById(R.id.tv_barbershop_info);
+        btnBook = v.findViewById(R.id.btn_book_from_barber_profile);
 
         Bundle b = getArguments();
         city = b.getString("city");
@@ -51,50 +52,25 @@ public class ProfileFragment extends Fragment {
         building = b.getString("building");
         barbershop = b.getString("barbershop");
 
-        Bundle bundle = new Bundle();
-        InfoFragment infoFragment = new InfoFragment();
-        bundle.putString("city", city);
-        bundle.putString("country", country);
-        bundle.putString("street", street);
-        bundle.putString("building", building);
-        bundle.putString("barbershop", barbershop);
-        infoFragment.setArguments(bundle);
-        startActivity(infoFragment);
 
-        adapter.addFragment(new InfoFragment(), "Info");
-        adapter.addFragment(new ReviewFragment(), "Reviews");
-        adapter.addFragment(new ServicesFragment(), "Services");
-
-        viewPager.setAdapter(adapter);
-        tabLayout.setupWithViewPager(viewPager);
+        tvbarbershop.setText(barbershop);
+        tvCity.setText(city);
+        tvCountry.setText(country);
+        tvStreet.setText("st." +street);
+        tvBuilding.setText("Building: "+building);
 
         Bundle args = getArguments();
         assert args != null;
         name = args.getString("barber_name");
-        etBarberName.setText(name);
+        tvBarberName.setText(name);
+
+        btnBook.setOnClickListener(e -> btnBook());
 
         return v;
     }
 
-    private void putData() {
-
-    }
-
-    private void getData() {
-
-
-    }
-
-    private void startActivity(Fragment fragment)
+    private void btnBook()
     {
-        try {
-            Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.nav_client_fragment, fragment)
-                    .addToBackStack(null)
-                    .commit();
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
+    }
 }

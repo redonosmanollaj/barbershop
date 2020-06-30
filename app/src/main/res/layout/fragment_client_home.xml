@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:text="MY BARBERS"
             android:textSize="22sp"
-            android:textColor="@color/colorTextHint"
+            android:textColor="@color/mcv_text_date_dark"
             android:textStyle="bold"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -48,6 +48,8 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:text="find"
+            android:textColor="@color/mcv_text_date_dark"
+            android:background="@color/design_default_color_secondary_variant"
             android:id="@+id/client_find_barbers"
             android:textSize="22sp"/>
 

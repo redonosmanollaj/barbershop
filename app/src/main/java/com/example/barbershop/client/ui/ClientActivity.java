@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import com.example.barbershop.R;
+import com.example.barbershop.client.ui.fragments.AppointmentsFragment;
 import com.example.barbershop.client.ui.fragments.ProfileFragment;
 import com.example.barbershop.client.ui.fragments.HomeFragment;
 import com.example.barbershop.client.ui.fragments.SearchFragment;
@@ -50,7 +51,7 @@ public class ClientActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.appointment_navbar:
-                        if (appointmentFragment == null) appointmentFragment = new ProfileFragment();
+                        if (appointmentFragment == null) appointmentFragment = new AppointmentsFragment();
                         active = appointmentFragment;
                         break;
                     case R.id.search_navbar:

@@ -30,16 +30,16 @@ import java.util.Objects;
 
 public class HomeFragment extends Fragment
 {
-    TextView tvMyBarbers;
-    TextView tvProfileLetter;
-    Button findBarbers;
+    private TextView tvMyBarbers;
+    private TextView tvProfileLetter;
+    private Button findBarbers;
     private MutableLiveData<List<Barber>> data;
 
-    MyBarbersViewModel viewModel;
-    FavBarberAdapter myBarbersAdapter;
-    RecyclerView recyclerView;
-    String username;
-    List<FavoriteBarbers> myBarbersList = new ArrayList<>();
+    private MyBarbersViewModel viewModel;
+    private FavBarberAdapter myBarbersAdapter;
+    private RecyclerView recyclerView;
+    private String username;
+    private List<FavoriteBarbers> myBarbersList = new ArrayList<>();
 
     public HomeFragment() {
         //blank constructor

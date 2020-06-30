@@ -1,11 +1,39 @@
 package com.example.barbershop.models;
 
+import org.json.JSONObject;
+
 public class Barber {
     private int id;
     private int userId;
     private String name;
     private String phone;
     private String city;
+    private String status;
+    private String building;
+    private String barbershop;
+    private String street;
+
+    public String getTime() {
+        return time;
+    }
+
+    private String time;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public Barber(String name, String barbershop, String street, String building, String city, String status) {
+        this.name = name;
+        this.city = city;
+        this.building = building;
+        this.barbershop = barbershop;
+        this.street = street;
+        this.status = status;
+    }
+
+
+
 
     public String getBarbershop() {
         return barbershop;
@@ -23,9 +51,6 @@ public class Barber {
         return country;
     }
 
-    private String barbershop;
-    private String street;
-    private String building;
     private String country;
     private double reviews;
 

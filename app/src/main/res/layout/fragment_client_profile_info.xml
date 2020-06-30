@@ -38,49 +38,62 @@
                     android:textSize="26sp"
                     android:textStyle="bold"
                     android:textColor="@color/colorAccent"/>
-                <TextView
-                    android:paddingTop="10sp"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Address"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/colorTextHint"/>
+                    android:orientation="horizontal">
+                    <TextView
+                        android:paddingTop="10sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Address"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorTextHint"/>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_location_on_black_24dp"
+                        android:layout_gravity="bottom"/>
+                </LinearLayout>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingLeft="10sp"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="@color/colorTextHint"
                     android:textSize="23sp"
+                    android:textStyle="italic"
                     android:id="@+id/tv_address_city"
                     android:alpha="0.8"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingLeft="10sp"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="@color/colorTextHint"
                     android:textSize="23sp"
+                    android:textStyle="italic"
                     android:id="@+id/tv_address_country"
                     android:alpha="0.8"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingLeft="10sp"
-                    android:textColor="@color/colorAccent"
+                    android:textColor="@color/colorTextHint"
                     android:textSize="23sp"
+                    android:textStyle="italic"
                     android:id="@+id/tv_address_street"
                     android:alpha="0.8"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingLeft="10sp"
-                    android:textColor="@color/colorAccent"
+                    android:textStyle="italic"
+                    android:textColor="@color/colorTextHint"
                     android:textSize="23sp"
                     android:id="@+id/tv_address_building"
                     android:alpha="0.8"/>
             </LinearLayout>
         </LinearLayout>
-
-
     </ScrollView>
 </LinearLayout>

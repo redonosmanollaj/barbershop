@@ -52,7 +52,6 @@ public class MyBarbersHttp extends BaseHttpClient
                     );
                     favbarbers.add(favoriteBarber);
                 }
-                Log.i("Result", favbarbers.toString());
             }
         }
         catch(IOException | JSONException e)

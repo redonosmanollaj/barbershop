@@ -16,11 +16,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.barbershop.R;
 import com.example.barbershop.client.adapters.SearchedBarbersAdapter;
+import com.example.barbershop.client.ui.BarberInterface;
 import com.example.barbershop.client.viewmodels.SearchedBarbersViewModel;
 import com.example.barbershop.models.Barber;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
 
 public class SearchFragment extends Fragment implements SearchedBarbersAdapter.onBarberListener {
     public SearchFragment() {}
@@ -135,8 +137,10 @@ public class SearchFragment extends Fragment implements SearchedBarbersAdapter.o
         args.putString("city", viewModel.getData().getValue().get(position).getCity());
         args.putString("country", viewModel.getData().getValue().get(position).getCountry());
         args.putString("phone", viewModel.getData().getValue().get(position).getPhone());
+        args.putInt("id", viewModel.getData().getValue().get(position).getId());
 
         profileFragment.setArguments(args);
         startActivity(profileFragment);
     }
+
 }

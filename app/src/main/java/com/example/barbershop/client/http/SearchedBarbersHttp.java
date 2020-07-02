@@ -31,7 +31,7 @@ public class SearchedBarbersHttp extends BaseHttpClient {
 
 
         RequestBody requestBody = new FormBody.Builder()
-                .add("name", SearchFragment.GetName()) //how to pass the EditText value from SearchFragment???
+                .add("name", SearchFragment.GetName())
                 .build();
 
         Request request = new Request.Builder()
@@ -65,7 +65,6 @@ public class SearchedBarbersHttp extends BaseHttpClient {
                     searchedBarbers.add(barber);
                 }
             }
-
         } catch (IOException | JSONException e) {
             e.printStackTrace();
         }

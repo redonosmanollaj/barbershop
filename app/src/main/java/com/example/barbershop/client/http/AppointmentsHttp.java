@@ -1,18 +1,13 @@
 package com.example.barbershop.client.http;
 
 import android.content.Context;
-
-import com.example.barbershop.models.Appointment;
 import com.example.barbershop.models.Barber;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
@@ -50,7 +45,6 @@ public class AppointmentsHttp extends BaseHttpClient
                             jsonObject.getJSONObject("barber").getJSONObject("location").getString("building"),
                             jsonObject.getJSONObject("barber").getJSONObject("location").getString("city"),
                             jsonObject.getString("status"));
-
                     appointmentToBarber.add(barber);
                 }
             }
